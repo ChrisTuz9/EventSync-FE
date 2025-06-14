@@ -1,33 +1,25 @@
-import { useState } from "react";
+import { useEventForm } from "../hooks/useEventForm";
 import { UIButton } from "./uikit/UIButton";
 import { UILabeledInput } from "./uikit/UILabeledInput";
-import { EventApi } from "../api/EventApi";
 
 export function EventForm() {
-    const [title, setTitle] = useState("");
-    const [description, setDescription] = useState("")
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState(null);
+    const {
+        title,
+        setTitle,
+        description,
+        setDescription,
+        loading,
+        message,
+        submit,
+    } = useEventForm();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoading(true);
-        setMessage(null);
-
-        try {
-            await EventApi.createEvent({ title, description });
-            setMessage("Event created successfully!");
-            setTitle("");
-            setDescription("");
-        } catch (err) {
-            setMessage(err?.response?.data?.message || err.message || "Something went wrong");
-        } finally {
-            setLoading(false);
-        }
+        submit();
     }
 
     return (
-        <form 
+        <form
             className="max-w-md mx-auto p-4 m-4 shadow-md"
             onSubmit={handleSubmit}
         >
@@ -46,9 +38,9 @@ export function EventForm() {
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
             />
-            <UIButton 
+            <UIButton
                 type="submit"
-                size="md" 
+                size="md"
                 variant="primary"
                 disabled={loading}
             >
