@@ -9,7 +9,6 @@ export function EventForm() {
         description,
         setDescription,
         loading,
-        message,
         submit,
     } = useEventForm();
 
@@ -46,9 +45,6 @@ export function EventForm() {
             >
                 {loading ? "Submitting..." : "Submit"}
             </UIButton>
-            {message && (
-                <p className="mt-2 text-sm text-center text-gray-700">{message}</p>
-            )}
         </form>
     )
 }
