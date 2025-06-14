@@ -19,7 +19,7 @@ export function EventForm() {
 
     return (
         <form
-            className="max-w-md mx-auto p-4 m-4 shadow-md"
+            className="max-w-md mx-auto p-4 m-4 border shadow-md"
             onSubmit={handleSubmit}
         >
             <h1 className="text-2xl font-semibold text-teal-600 mb-2">Create new event</h1>

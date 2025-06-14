@@ -1,9 +1,7 @@
-import { EventForm } from "../components/EventForm";
+import { EventsView } from "../components/EventsView"
 
-export default function EventSyncApp() {
+export default function Home() {
     return (
-        <>
-            <EventForm/>
-        </>
+        <EventsView /> 
     )
 }
