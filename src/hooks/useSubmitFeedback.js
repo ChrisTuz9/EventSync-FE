@@ -2,10 +2,13 @@ import { useState } from "react";
 import { FeedbackApi } from "../api/FeedbackApi";
 import { toast } from "react-toastify";
 
-export function useSubmitFeedback(eventId) {
+export function useSubmitFeedback({ eventId, onSuccess }) {
+    const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
-    async function submitFeedback(message) {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!message.trim()) return;
         setLoading(true);
 
         try {
@@ -15,10 +18,15 @@ export function useSubmitFeedback(eventId) {
         } finally {
             setLoading(false);
         }
-    }
+
+        setMessage("");
+        onSuccess?.();
+    };
 
     return {
-        submitFeedback,
+        message,
+        setMessage,
         loading,
+        handleSubmit,
     };
 }

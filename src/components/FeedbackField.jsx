@@ -4,16 +4,7 @@ import { SendIcon } from "./icons/SendIcon";
 import { UIInputWithSubmit } from "./uikit/UIInputWithSubmit";
 
 export function FeedbackField({ eventId, onSuccess }) {
-    const { submitFeedback, loading } = useSubmitFeedback(eventId);
-    const [message, setMessage] = useState("");
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        if (!message.trim()) return;
-        await submitFeedback(message);
-        setMessage("");
-        onSuccess?.();
-    };
+    const { message, setMessage, loading, handleSubmit } = useSubmitFeedback({ eventId, onSuccess });
 
     return (
         <form className="mt-2" onSubmit={handleSubmit}>
@@ -26,7 +17,7 @@ export function FeedbackField({ eventId, onSuccess }) {
                     }
                 }}
                 placeholder="Write a feedback..."
-                submitButtonChildren={<SendIcon className="w-5 h-5"/>}
+                submitButtonChildren={<SendIcon className="w-5 h-5" />}
                 buttonShape="circle"
                 disabled={loading}
             />
