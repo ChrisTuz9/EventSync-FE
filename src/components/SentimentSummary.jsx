@@ -9,13 +9,13 @@ export function SentimentSummary({ eventId }) {
     return (
         <div className="flex items-center gap-3 text-gray-700 my-2">
             <div className="flex items-center gap-1">
-                <span role="img" aria-label="positive" >👍</span> {summary.positiveCount}
+                <span role="img" aria-label="positive" >😍</span> {summary.positiveCount}
             </div>
             <div className="flex items-center gap-1">
                 <span role="img" aria-label="neutral" >😐</span> {summary.neutralCount}
             </div>
             <div className="flex items-center gap-1">
-                <span role="img" aria-label="negative" >👎</span> {summary.negativeCount}
+                <span role="img" aria-label="negative" >😡</span> {summary.negativeCount}
             </div>
         </div>
     )
