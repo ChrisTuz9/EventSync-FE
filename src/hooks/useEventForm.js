@@ -7,7 +7,8 @@ export function useEventForm() {
     const [description, setDescription] = useState("")
     const [loading, setLoading] = useState(false);
 
-    const submit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setLoading(true);
 
         try {
@@ -20,7 +21,7 @@ export function useEventForm() {
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     return {
         title,
@@ -28,6 +29,6 @@ export function useEventForm() {
         description,
         setDescription,
         loading,
-        submit,
+        handleSubmit,
     };
-}
+};

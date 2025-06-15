@@ -9,13 +9,8 @@ export function EventForm() {
         description,
         setDescription,
         loading,
-        submit,
+        handleSubmit,
     } = useEventForm();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        submit();
-    }
 
     return (
         <form
