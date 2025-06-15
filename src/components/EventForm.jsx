@@ -2,7 +2,7 @@ import { useEventForm } from "../hooks/useEventForm";
 import { UIButton } from "./uikit/UIButton";
 import { UILabeledInput } from "./uikit/UILabeledInput";
 
-export function EventForm() {
+export function EventForm({ onSuccess }) {
     const {
         title,
         setTitle,
@@ -10,7 +10,7 @@ export function EventForm() {
         setDescription,
         loading,
         handleSubmit,
-    } = useEventForm();
+    } = useEventForm({ onSuccess });
 
     return (
         <form
