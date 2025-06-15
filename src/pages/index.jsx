@@ -1,5 +1,7 @@
-export default function EventSyncApp() {
+import { EventsView } from "../components/EventsView"
+
+export default function Home() {
     return (
-        <></>
+        <EventsView /> 
     )
 }
