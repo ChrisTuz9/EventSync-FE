@@ -1,4 +1,6 @@
-export function EventCard({ title, description }) {
+import { FeedbackField } from "./FeedbackField";
+
+export function EventCard({ id, title, description }) {
     return (
         <div className="border rounded p-4 shadow-sm bg-white">
             <h2 className="text-lg font-semibold textr-teal-700">
@@ -7,6 +9,7 @@ export function EventCard({ title, description }) {
             <p className="text-gray-700 mt-1">
                 {description}
             </p>
+            <FeedbackField eventId={id}/>
         </div>
     )
 }

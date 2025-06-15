@@ -1,3 +1,8 @@
+/**
+ * @param {{
+ * as: 'input' | 'textarea'
+ * }} props 
+ */
 export function UILabeledInput({ label, as = "input", ...props }) {
     const Tag = as;
 
