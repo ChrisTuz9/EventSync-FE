@@ -1,8 +1,6 @@
 import { useSentimentSummary } from "../hooks/useSentimentSummary";
 
-export function SentimentSummary({ eventId }) {
-    const {summary, loading, error} = useSentimentSummary(eventId);
-
+export function SentimentSummary({ summary, loading, error }) {
     if (loading) return <p>Loading sentiment summary…</p>;
     if (error) return <p className="text-red-600">Error: {error}</p>;
 
