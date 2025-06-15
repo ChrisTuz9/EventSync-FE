@@ -9,7 +9,7 @@ import clsx from "clsx"
  * shape?: 'rounded' | 'circle'
  * }} props 
  */
-export function UIButton({ children, className, size, variant, shape = 'rounded' }) {
+export function UIButton({ children, className, size, variant, shape = 'rounded', disabled }) {
     const buttonClassName = clsx(
         "transition-colors leading-tight",
         className,
@@ -29,7 +29,7 @@ export function UIButton({ children, className, size, variant, shape = 'rounded'
     )
 
     return (
-        <button className={buttonClassName}>
+        <button className={buttonClassName} disabled={disabled}>
             {children}
         </button>
     )
