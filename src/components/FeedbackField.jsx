@@ -3,15 +3,16 @@ import { useSubmitFeedback } from "../hooks/useSubmitFeedback";
 import { SendIcon } from "./icons/SendIcon";
 import { UIInputWithSubmit } from "./uikit/UIInputWithSubmit";
 
-export function FeedbackField({ eventId }) {
+export function FeedbackField({ eventId, onSuccess }) {
     const { submitFeedback, loading } = useSubmitFeedback(eventId);
     const [message, setMessage] = useState("");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!message.trim()) return;
-        await submitFeedback(message, );
+        await submitFeedback(message);
         setMessage("");
+        onSuccess?.();
     };
 
     return (
