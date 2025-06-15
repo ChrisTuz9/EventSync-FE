@@ -10,4 +10,8 @@ export const EventApi = {
     async getAllEvents() {
         return axios.get(`${API_BASE_URL}`);
     },
+
+    async getSentimentSummary(eventId) {
+        return axios.get(`${API_BASE_URL}/${eventId}/summary`);
+    },
 }
