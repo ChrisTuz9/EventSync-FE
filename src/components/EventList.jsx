@@ -1,9 +1,6 @@
 import { EventCard } from "./EventCard";
-import { useEvents } from "../hooks/useEvents";
 
-export function EventList() {
-    const {events, loading, error} = useEvents();
-
+export function EventList({events, loading, error}) {
     if (loading) return <p className="text-center">Loading events...</p>;
     if (error) return <p className="text-center text-red-600">{error}</p>;
 
