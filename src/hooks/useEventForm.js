@@ -2,25 +2,27 @@ import { useState } from "react";
 import { EventApi } from "../api/EventApi";
 import { toast } from "react-toastify";
 
-export function useEventForm() {
+export function useEventForm({ onSuccess }) {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("")
     const [loading, setLoading] = useState(false);
 
-    const submit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setLoading(true);
 
         try {
-            await EventApi.createEvent({ title, description });
+            const res = await EventApi.createEvent({ title, description });
             toast.success("Event created successfully!");
             setTitle("");
             setDescription("");
+            onSuccess?.(res.data);
         } catch (err) {
             toast.error(err?.response?.data?.message || err.message || "Something went wrong");
         } finally {
             setLoading(false);
         }
-    };
+    }
 
     return {
         title,
@@ -28,6 +30,6 @@ export function useEventForm() {
         description,
         setDescription,
         loading,
-        submit,
+        handleSubmit,
     };
-}
+};

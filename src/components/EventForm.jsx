@@ -2,20 +2,15 @@ import { useEventForm } from "../hooks/useEventForm";
 import { UIButton } from "./uikit/UIButton";
 import { UILabeledInput } from "./uikit/UILabeledInput";
 
-export function EventForm() {
+export function EventForm({ onSuccess }) {
     const {
         title,
         setTitle,
         description,
         setDescription,
         loading,
-        submit,
-    } = useEventForm();
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        submit();
-    }
+        handleSubmit,
+    } = useEventForm({ onSuccess });
 
     return (
         <form

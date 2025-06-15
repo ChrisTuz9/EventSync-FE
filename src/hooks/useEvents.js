@@ -1,25 +1,28 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import { EventApi } from "../api/EventApi";
+import { eventsReducer, initEventsState, EVENTS_ACTIONS } from "../reducers/eventsReducer";
 
 export function useEvents() {
-    const [events, setEvents] = useState([]);
+    const [state, dispatch] = useReducer(eventsReducer, undefined, initEventsState);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        async function fetchEvents() {
+        (async () => {
             try {
-                const response = await EventApi.getAllEvents();
-                setEvents(response.data);
+                const res = await EventApi.getAllEvents();
+                dispatch({ type: EVENTS_ACTIONS.SET_EVENTS, payload: res.data });
             } catch (err) {
                 setError(err?.response?.data?.message || err.message || "Something went wrong")
             } finally {
                 setLoading(false);
             }
-        }
-
-        fetchEvents();
+        })();
     }, []);
 
-    return { events, loading, error };
+    const addEvent = (newEvent) => {
+        dispatch({ type: EVENTS_ACTIONS.ADD_EVENT, payload: newEvent });
+    };
+
+    return { events: state.events, addEvent, loading, error };
 }
